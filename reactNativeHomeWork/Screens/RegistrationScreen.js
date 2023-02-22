@@ -9,6 +9,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Dimensions,
+  Platform,
 } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -41,9 +42,9 @@ export const RegistrationScreen = () => {
     };
     Dimensions.addEventListener("change", onChange);
 
-    return () => {
-      Dimensions.removeEventListener("change", onChange);
-    };
+    // return () => {
+    //   Dimensions.removeEventListener("change", onChange);
+    // };
   }, []);
 
   if (!isReady) {
@@ -70,7 +71,7 @@ export const RegistrationScreen = () => {
       <View
         style={{
           ...styles.form,
-          marginBottom: isShowKeyboard ? 40 : 140,
+          marginBottom: isShowKeyboard ? 280 : 113,
           width: dimension,
         }}
       >
@@ -85,6 +86,8 @@ export const RegistrationScreen = () => {
               style={styles.input}
               value={state.login}
               textAlign={"center"}
+              placeholder={"Login"}
+              placeholderTextColor={`#fff8dc`}
               onFocus={() => {
                 setIsShowKeyboard(true);
               }}
@@ -98,6 +101,8 @@ export const RegistrationScreen = () => {
               style={styles.input}
               textAlign={"center"}
               value={state.email}
+              placeholder={"Email"}
+              placeholderTextColor={`#fff8dc`}
               onFocus={() => {
                 setIsShowKeyboard(true);
               }}
@@ -111,6 +116,9 @@ export const RegistrationScreen = () => {
               style={styles.inputLast}
               textAlign={"center"}
               value={state.password}
+              secureTextEntry={true}
+              placeholder={"Password"}
+              placeholderTextColor={`#fff8dc`}
               onFocus={() => {
                 setIsShowKeyboard(true);
               }}
@@ -147,13 +155,13 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 33,
   },
   headerTitle: {
     color: `#f8f8ff`,
     fontSize: 30,
     fontWeight: "500",
     fontFamily: "Mynerve-Regular",
+    marginBottom: 33,
   },
   input: {
     borderWidth: 1,
@@ -163,25 +171,27 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     color: "#fff",
     marginBottom: 16,
+    marginHorizontal: 16,
   },
   inputLast: {
     borderWidth: 1,
     borderColor: "#f0f8ff",
     width: 343,
-    height: 40,
+    height: 50,
     borderRadius: 6,
     color: "#fff",
     marginBottom: 43,
+    marginHorizontal: 16,
   },
   btn: {
     borderWidth: 1,
     height: 40,
     width: 343,
-    borderRadius: 6,
+    borderRadius: 24,
     marginBottom: 113,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     ...Platform.select({
       ios: {
         borderColor: "#f0f8ff",
@@ -192,5 +202,7 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: `#00008b`,
     fontFamily: "Mynerve-Regular",
+    fontSize: 16,
+    fontWeight: "400",
   },
 });

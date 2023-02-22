@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export const RegistrationScreen = () => {
+export const LoginScreen = () => {
   return (
     <View style={styles.form}>
       <View style={styles.header}>
