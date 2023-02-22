@@ -24,12 +24,12 @@ export const RegistrationScreen = () => {
       <TouchableOpacity>
         <Text>Login</Text>
       </TouchableOpacity>
-      <View>
+      {/* <View>
         <Text>Don't have an account?</Text>
         <TouchableOpacity>
           <Text>Register</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
