@@ -1,21 +1,34 @@
-import { StatusBar } from "expo-status-bar";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { RegistrationScreen } from "./Screens/RegistrationScreen";
-import { LoginScreen } from "./Screens/LoginScreen";
+import { NavigationContainer } from "@react-navigation/native";
+
+import * as Font from "expo-font";
+import { useState } from "react";
+import AppLoading from "expo-app-loading";
+import { StyleSheet } from "react-native";
+
+import { useRoute } from "./router";
+
+const loadApplication = async () => {
+  await Font.loadAsync({
+    "Mynerve-Regular": require("./assets/Fonts/Mynerve/Mynerve-Regular.ttf"),
+  });
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("./assets/Images/MyZ6Zmzzs7g6d2EG.jpg")}
-      >
-        {/* <RegistrationScreen></RegistrationScreen> */}
-        <LoginScreen></LoginScreen>
-      </ImageBackground>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const [isReady, setIsReady] = useState({});
+  const routing = useRoute(false);
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onFinish={() => {
+          setIsReady(true);
+        }}
+        onError={console.warn}
+      />
+    );
+  }
+  return <NavigationContainer>{routing}</NavigationContainer>;
 }
 
 const styles = StyleSheet.create({
